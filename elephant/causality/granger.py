@@ -190,7 +190,6 @@ def _lag_covariances(signals, dimension, max_lag):
         \tau: lag
 
         C(\tau) = \sum_{i=0}^{N-\tau} x[i]*x^T[\tau+i]
-
     """
     length = np.size(signals[0])
 
@@ -244,7 +243,6 @@ def _yule_walker_matrix(data, dimension, order):
         where 1 \leq i \leq j \leq p. The other entries are determined by
         symmetry.
     lag_covariances : np.ndarray
-
     """
 
     lag_covariances = _lag_covariances(data, dimension, order)
@@ -300,7 +298,6 @@ def _vector_arm(signals, dimension, order):
         ry
     covar_mat : np.ndarray
         covariance matrix of
-
     """
 
     yule_walker_matrix, lag_covariances = \
@@ -474,7 +471,6 @@ def _spectral_factorization(cross_spectrum, num_iterations, term_crit=1e-12):
         factorization
         Default: 1e-12
 
-
     Returns
     ------
     cov_matrix : np.ndarray
@@ -546,7 +542,7 @@ def _spectral_factorization(cross_spectrum, num_iterations, term_crit=1e-12):
 
 def pairwise_granger(signals, max_order, information_criterion='aic'):
     r"""
-    Determine Granger Causality of two time series
+    Determine Granger Causality of two time series.
 
     Parameters
     ----------
@@ -645,7 +641,6 @@ def pairwise_granger(signals, max_order, information_criterion='aic'):
     >>> signals = np.array([x[1:], y]).T  # N x 2 matrix
     >>> pairwise_granger(signals, max_order=1)  # noqa
     Causality(directional_causality_x_y=2.64, directional_causality_y_x=-0.0, instantaneous_causality=0.0, total_interdependence=2.64)
-
     """
     if isinstance(signals, AnalogSignal):
         signals = signals.magnitude
@@ -790,7 +785,8 @@ def pairwise_spectral_granger(signal_i, signal_j, fs=1, nw=4, num_tapers=None,
                               len_segment=None, frequency_resolution=None,
                               overlap=0.5, num_iterations=300,
                               term_crit=1e-12):
-    r"""Determine spectral Granger Causality of two signals.
+    r"""
+    Determine spectral Granger Causality of two signals.
 
     The spectral Granger Causality is obtained through the following steps:
 
